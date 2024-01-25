@@ -4,6 +4,7 @@ public class RaycastInteract : MonoBehaviour
 {
     public float interactRange = 3f;
     public Transform playerHand; // Reference to the player's hand or camera
+    public float scrollSpeed = 5f; // Adjust this value to control the scroll speed
 
     private Transform heldObject;
     private Outline lastInteractedOutline;
@@ -52,6 +53,13 @@ public class RaycastInteract : MonoBehaviour
                     // Drop the held object if already holding something
                     Drop();
                 }
+            }
+
+            // Adjust the distance of the interactable based on the scroll wheel input
+            if (heldObject != null)
+            {
+                float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+                AdjustDistance(scrollInput);
             }
         }
         else
@@ -111,5 +119,18 @@ public class RaycastInteract : MonoBehaviour
         {
             outline.enabled = false;
         }
+    }
+
+    void AdjustDistance(float scrollInput)
+    {
+        // Adjust the distance of the held object along the camera's forward direction
+        float distanceChange = scrollInput * scrollSpeed * Time.deltaTime;
+        Vector3 newPosition = heldObject.position + Camera.main.transform.forward * distanceChange;
+
+        // Clamp the distance to avoid getting too close or too far
+        float minDistance = 1f;
+        float maxDistance = 10f;
+        newPosition = Vector3.ClampMagnitude(newPosition - playerHand.position, maxDistance) + playerHand.position;
+        heldObject.position = newPosition;
     }
 }
