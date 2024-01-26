@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class MixMechanic : MonoBehaviour
 {
-    // this script checks if something interactable is inside the bowl and if so make it disappear and go
+    // this script checks if something interactable is inside the bowl and if so make it disappear and the object will enter an array for the recipe
     public Transform tpDestination;
-    public float waitTime;
-
     private bool isTp;
+
+    public float waitTime = 2f;
+
+
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +19,7 @@ public class MixMechanic : MonoBehaviour
         {
             Debug.Log("Interactable inside");
             
-            StartCoroutine(TpAfterDelay(other.transform)); //tp item
+            StartCoroutine(TpAfterDelay(other.transform)); //tp item to
         }
     }
 
