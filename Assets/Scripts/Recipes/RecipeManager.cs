@@ -1,5 +1,6 @@
-using UnityEngine;
+// RecipeManager.cs
 using System.Collections.Generic;
+using UnityEngine;
 
 public class RecipeManager : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class RecipeManager : MonoBehaviour
                 SpawnResultObject(recipe.resultPrefab);
                 // Clear the collected ingredients
                 collectedIngredients.Clear();
-                
                 // You can add additional logic here, like playing a sound or showing a message
             }
         }

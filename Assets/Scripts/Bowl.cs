@@ -19,7 +19,7 @@ public class Bowl : MonoBehaviour
             PerformObjectActions();
         }
 
-        // Check for toggle event (you can replace this with your specific event condition)
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ToggleLock();

@@ -1,36 +1,48 @@
+// MixMechanic.cs
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MixMechanic : MonoBehaviour
 {
-    // this script checks if something interactable is inside the bowl and if so make it disappear and the object will enter an array for the recipe
     public Transform tpDestination;
     private bool isTp;
 
     public float waitTime = 2f;
-
-
-    
+    public RecipeManager recipeManager;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Interactable") && !isTp)
         {
             Debug.Log("Interactable inside");
-            
-            StartCoroutine(TpAfterDelay(other.transform)); //tp item to
+
+            // Assuming your Interactable script has a list of ingredient names
+            Interactable interactable = other.GetComponent<Interactable>();
+
+            if (interactable != null)
+            {
+                List<string> collectedIngredients = interactable.collectedIngredients;
+
+                // Print out the collected ingredients for debugging
+                Debug.Log("Collected Ingredients: " + string.Join(", ", collectedIngredients));
+
+                recipeManager.CheckRecipe(collectedIngredients);
+
+                StartCoroutine(TpAfterDelay(other.transform)); //tp item to
+            }
+            else
+            {
+                Debug.LogWarning("Interactable script not found on the object.");
+            }
         }
     }
 
     private IEnumerator TpAfterDelay(Transform objectToTeleport)
     {
         isTp = true;
-
         yield return new WaitForSeconds(waitTime);
-
         objectToTeleport.position = tpDestination.position;
-
         isTp = false;
     }
 }

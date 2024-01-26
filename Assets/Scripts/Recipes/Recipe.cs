@@ -1,4 +1,4 @@
-using System.Collections;
+// Recipe.cs
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,4 +9,3 @@ public class Recipe
     public List<string> requiredIngredients;
     public GameObject resultPrefab; // The result object to spawn when the recipe is completed
 }
-
