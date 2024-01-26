@@ -1,7 +1,5 @@
-// MixMechanic.cs
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class MixMechanic : MonoBehaviour
 {
@@ -17,24 +15,13 @@ public class MixMechanic : MonoBehaviour
         {
             Debug.Log("Interactable inside");
 
-            // Assuming your Interactable script has a list of ingredient names
-            Interactable interactable = other.GetComponent<Interactable>();
+            // Assuming there's a script on the Interactable object to get the ingredient name
+            string ingredientName = other.GetComponent<Ingredient>().ingredientName;
 
-            if (interactable != null)
-            {
-                List<string> collectedIngredients = interactable.collectedIngredients;
+            recipeManager.AddIngredient(ingredientName);
+            recipeManager.CheckRecipe();
 
-                // Print out the collected ingredients for debugging
-                Debug.Log("Collected Ingredients: " + string.Join(", ", collectedIngredients));
-
-                recipeManager.CheckRecipe(collectedIngredients);
-
-                StartCoroutine(TpAfterDelay(other.transform)); //tp item to
-            }
-            else
-            {
-                Debug.LogWarning("Interactable script not found on the object.");
-            }
+            StartCoroutine(TpAfterDelay(other.transform)); //tp item to
         }
     }
 
