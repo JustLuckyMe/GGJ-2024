@@ -9,6 +9,7 @@ public class RaycastInteract : MonoBehaviour
     private Transform heldObject;
     private Outline lastInteractedOutline;
 
+
     void Update()
     {
         // Cast a ray from the camera's position in the direction it's facing
@@ -23,6 +24,8 @@ public class RaycastInteract : MonoBehaviour
         {
             // Check if the hit object has an interactable component
             Interactable interactable = hit.collider.GetComponent<Interactable>();
+            BookInteract bookInteractable = hit.collider.GetComponent<BookInteract>();
+
 
             // Get the outline component of the interactable object
             Outline outline = hit.collider.GetComponent<Outline>();
@@ -53,6 +56,11 @@ public class RaycastInteract : MonoBehaviour
                     // Drop the held object if already holding something
                     Drop();
                 }
+            }
+
+            if (Input.GetMouseButton(0) && bookInteractable != null)
+            {
+                bookInteractable.OpenBook();
             }
 
             // Adjust the distance of the interactable based on the scroll wheel input
@@ -128,7 +136,7 @@ public class RaycastInteract : MonoBehaviour
         Vector3 newPosition = heldObject.position + Camera.main.transform.forward * distanceChange;
 
         // Clamp the distance to avoid getting too close or too far
-        float minDistance = 1f;
+        //float minDistance = 1f;
         float maxDistance = 10f;
         newPosition = Vector3.ClampMagnitude(newPosition - playerHand.position, maxDistance) + playerHand.position;
         heldObject.position = newPosition;
