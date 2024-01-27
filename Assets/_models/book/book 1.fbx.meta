@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 49af3817454539246ae6ce5ea0c5b239
+guid: 8072e797fb140324fba99d77306fd35a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: font_texture
-    second: {fileID: 2100000, guid: b1af3cecd7c396d4f9043cc1675251d8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: side_texture
-    second: {fileID: 2100000, guid: e1c7cf2f45dbac341b95b032544c411a, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -98,7 +88,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 25
+    globalScale: 0.635
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
