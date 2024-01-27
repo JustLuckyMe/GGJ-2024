@@ -22,7 +22,7 @@ public class RecipeManager : MonoBehaviour
                 // Recipe matched, spawn the result object
                 SpawnResultObject(recipe.resultPrefab);
                 // Clear the collected ingredients
-                //collectedIngredients.Clear();
+                collectedIngredients.Clear();
                 // You can add additional logic here, like playing a sound or showing a message
             }
         }
