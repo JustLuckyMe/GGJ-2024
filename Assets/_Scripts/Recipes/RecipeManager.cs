@@ -5,8 +5,12 @@ public class RecipeManager : MonoBehaviour
 {
     public List<Recipe> recipes;
     public List<string> collectedIngredients = new List<string>();
+    public Transform playerHand; // Reference to the player's hand
 
-    public Transform SpawnPosition;
+    public void SetPlayerHand(Transform hand)
+    {
+        playerHand = hand;
+    }
 
     public void AddIngredient(string ingredientName)
     {
@@ -19,10 +23,8 @@ public class RecipeManager : MonoBehaviour
         {
             if (CheckIfRecipeMatches(recipe))
             {
-                // if player added two ingredients - open microwave
-                
-                
-                SpawnResultObject(recipe.resultPrefab);
+                // Recipe matched, spawn the result object in the player's hand
+                SpawnResultObjectInHand(recipe.resultPrefab);
                 // Clear the collected ingredients
                 collectedIngredients.Clear();
                 // You can add additional logic here, like playing a sound or showing a message
@@ -37,9 +39,9 @@ public class RecipeManager : MonoBehaviour
                recipe.requiredIngredients.TrueForAll(collectedIngredients.Contains);
     }
 
-    private void SpawnResultObject(GameObject resultPrefab)
+    private void SpawnResultObjectInHand(GameObject resultPrefab)
     {
-        // Instantiate the result object at a specific position or use the player's position, for example
-        Instantiate(resultPrefab, SpawnPosition.position, Quaternion.identity);
+        // Instantiate the result object at the player's hand position
+        Instantiate(resultPrefab, playerHand.position, playerHand.rotation);
     }
 }

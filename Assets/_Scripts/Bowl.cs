@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Bowl : MonoBehaviour
 {
+
+
     private bool isLocked = true;
 
     // Update is called once per frame

@@ -69,12 +69,23 @@ public class RaycastInteract : MonoBehaviour
             {
                 float scrollInput = Input.GetAxis("Mouse ScrollWheel");
                 AdjustDistance(scrollInput);
+
+                // Check if the held object is a bowl and the hit object is the microwave
+                if (heldObject.CompareTag("Bowl") && hit.collider.CompareTag("Microwave"))
+                {
+                    // Trigger the microwave animation
+                    if (toggleAnimation != null)
+                    {
+                        toggleAnimation.OpenAnimation();
+                    }
+                }
             }
 
             if (Input.GetMouseButton(0) && toggleAnimation != null)
             {
                 toggleAnimation.OpenAnimation();
             }
+ 
 
             /*
                         if (Physics.Raycast(ray, out hit, interactRange))
@@ -97,6 +108,7 @@ public class RaycastInteract : MonoBehaviour
             {
                 Drop();
             }
+
         }
     }
 

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CinemachineTarget
   - Interactable
+  - Bowl
+  - Microwave
   layers:
   - Default
   - TransparentFX
