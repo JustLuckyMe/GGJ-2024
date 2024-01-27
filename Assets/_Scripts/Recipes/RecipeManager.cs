@@ -19,7 +19,9 @@ public class RecipeManager : MonoBehaviour
         {
             if (CheckIfRecipeMatches(recipe))
             {
-                // Recipe matched, spawn the result object
+                // if player added two ingredients - open microwave
+                
+                
                 SpawnResultObject(recipe.resultPrefab);
                 // Clear the collected ingredients
                 collectedIngredients.Clear();

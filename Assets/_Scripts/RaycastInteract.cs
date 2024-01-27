@@ -25,6 +25,7 @@ public class RaycastInteract : MonoBehaviour
             // Check if the hit object has an interactable component
             Interactable interactable = hit.collider.GetComponent<Interactable>();
             BookInteract bookInteractable = hit.collider.GetComponent<BookInteract>();
+            ToggleAnimation toggleAnimation = hit.collider.GetComponent<ToggleAnimation>();
 
 
             // Get the outline component of the interactable object
@@ -69,6 +70,21 @@ public class RaycastInteract : MonoBehaviour
                 float scrollInput = Input.GetAxis("Mouse ScrollWheel");
                 AdjustDistance(scrollInput);
             }
+
+            if (Input.GetMouseButton(0) && toggleAnimation != null)
+            {
+                toggleAnimation.OpenAnimation();
+            }
+
+            /*
+                        if (Physics.Raycast(ray, out hit, interactRange))
+                        {
+                            Debug.Log("Hit object: " + hit.collider.gameObject.name);
+                            // ... rest of the code
+                        }*/
+
+
+
         }
         else
         {
